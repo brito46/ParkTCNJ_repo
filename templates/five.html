@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+</head>
+<body>
+    <div class="container-home">
+        <div class="lot5">
+            <h1 class="lot5-p"> You have clicked on Lot 4 </h1>
+        <!--    <h2 class="lot5-p"> Total Spots: 20 </h2>
+            <h2 class="lot5-p"> Available Spots: 8 </h2> -->
+        </div>
+
+        <table>
+            <tr>
+                <th> Total Spots</th>
+                <th> 20 </th>
+
+            </tr>
+
+            <!-- creating a new row  -->
+            <tr>
+                <!-- td defines a cell in table, and there are two kinds of cells:
+            Header cells - contains header information (th)
+            Data cells - contains data  (td)  -->
+
+                <th> Available Spots</th>
+
+                <!-- Later on the 2nd th tag will become a td tag, where it'll be connected to the rest endpoint to get data -->
+                <th class="slot"> 12 </th>
+            </tr>
+        </table>
+
+        <div class="home5">
+            <p class="lot5-a">
+                <a href="{{ url_for('home') }}">Check out other lots</a>
+            </p>
+        </div>
+
+        <h1 class="lot5-p" >Buildings Nearby: </h1>
+        <h1 class="lot5-p">Trenton Hall </h1>
+    </div>
+
+</body>
+</html>

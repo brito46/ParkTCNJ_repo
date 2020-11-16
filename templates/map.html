@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+
+</head>
+<body>
+
+    <div class="container-home">
+
+        <div class="map-image">
+            <p class=" map-image-p">
+                <img src="{{url_for('static', filename='Mappy.png')}}" width="800" height="800"  />
+            </p>
+        </div>
+
+        <div class="map-home">
+            <p class="map-home-a">
+                <a href="{{ url_for('home') }}">Choose a lot</a>
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
