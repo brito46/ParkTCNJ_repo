@@ -43,6 +43,10 @@ def lot16():
 def map():
 	return render_template('map.html')
 
+@app.route('/data/<counter>')
+def profile(counter):
+    return "hi" + counter
+
 
 if __name__ == '__main__':
     import os
