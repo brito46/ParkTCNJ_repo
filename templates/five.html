@@ -2,6 +2,7 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
 </head>
@@ -29,7 +30,7 @@
                 <th> Available Spots</th>
 
                 <!-- Later on the 2nd th tag will become a td tag, where it'll be connected to the rest endpoint to get data -->
-                <th class="slot"> 12 </th>
+                <th class="slot"> {{ value }} </th>
             </tr>
         </table>
 
