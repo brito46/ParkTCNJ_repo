@@ -1,12 +1,17 @@
-
-
 from flask import Flask, render_template, url_for, request, redirect
-#from flask_sqlalchemy import SQLAlchemy
-#from datetime import datetime
+import pyodbc
+
 
 #setting up our application
-# __name__ is a way to get the import name of the place the app is defined(alternative to hardcode the name of the package)
 app = Flask(__name__)
+
+
+server = 'lot-tcnj.database.windows.net'
+database = 'lot'
+username = 'mckinnc4'
+password = 'Ellectric6000'   
+driver= '{ODBC Driver 17 for SQL Server}'
+conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 
 '''
@@ -27,7 +32,15 @@ def home():
 
 @app.route('/five') 
 def lot5():
-	return render_template('five.html')
+    cursor = conn.cursor() 
+    cursor.execute("SELECT spaces from lot_four")
+    row = cursor.fetchall()
+    #value = str(row[0][0])
+    value = row[0][0]
+    try:
+	    return render_template('five.html',value=value)
+    except:
+        return render_template('five.html')
 
 
 @app.route('/seventeen') 
@@ -45,7 +58,34 @@ def map():
 
 @app.route('/data/<counter>')
 def profile(counter):
-    return "hi" + counter
+    try:
+        count = int(counter)
+        cursor = conn.cursor() 
+        cursor.execute("SELECT spaces from lot_four")
+        row = cursor.fetchall()
+        val = row[0][0] + count
+        #cursor = conn.cursor() 
+        cursor.execute(f"update lot_four set spaces = {val}")
+        cursor.commit()
+        return "Valid"
+    except:
+        return "Invalid"
+    
+
+
+@app.route('/testdb')
+def tester():
+    cursor = conn.cursor() 
+    cursor.execute("SELECT spaces from lot_four")
+    row = cursor.fetchall()
+    return str(row[0][0])
+
+
+'''
+@app.route('/test')
+def tester2():
+    print(mysql.is_connected())
+'''
 
 
 if __name__ == '__main__':
