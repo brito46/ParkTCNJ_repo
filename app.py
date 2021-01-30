@@ -33,12 +33,12 @@ def home():
 
 @app.route('/five') 
 def lot5():
-    cursor = conn.cursor() 
-    cursor.execute("SELECT spaces from lot_four")
-    row = cursor.fetchall()
-    #value = str(row[0][0])
-    value = row[0][0]
     try:
+        cursor = conn.cursor() 
+        cursor.execute("SELECT spaces from lot_four")
+        row = cursor.fetchall()
+        #value = str(row[0][0])
+        value = row[0][0]
 	    return render_template('five.html',value=value)
     except:
         return render_template('five.html')
