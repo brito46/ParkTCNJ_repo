@@ -39,9 +39,9 @@ def lot5():
         row = cursor.fetchall()
         #value = str(row[0][0])
         value = row[0][0]
-	    return render_template('five.html',value=value)
+        return render_template('five.html',value=value)
     except:
-        return render_template('five.html')
+        return render_template('five.html', value=100)
 
 
 @app.route('/seventeen') 
