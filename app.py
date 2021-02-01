@@ -2,7 +2,6 @@ from flask import Flask, render_template, url_for, request, redirect
 import pyodbc
 
 
-
 #setting up our application
 app = Flask(__name__)
 
@@ -76,17 +75,14 @@ def profile(counter):
 
 @app.route('/testdb')
 def tester():
-    cursor = conn.cursor() 
-    cursor.execute("SELECT spaces from lot_four")
-    row = cursor.fetchall()
-    return str(row[0][0])
+    try:
+        cursor = conn.cursor() 
+        cursor.execute("SELECT spaces from lot_four")
+        row = cursor.fetchall()
+        return str(row[0][0])
+    except:
+        return "100"
 
-
-'''
-@app.route('/test')
-def tester2():
-    print(mysql.is_connected())
-'''
 
 
 if __name__ == '__main__':
