@@ -11,7 +11,7 @@ database = 'lot'
 username = 'mckinnc4'
 password = 'Ellectric6000'   
 driver= '{ODBC Driver 17 for SQL Server}'
-conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+#conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 
 '''
@@ -33,6 +33,7 @@ def home():
 @app.route('/five') 
 def lot5():
     try:
+        conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         cursor = conn.cursor() 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
@@ -60,6 +61,7 @@ def map():
 def profile(counter):
     try:
         count = int(counter)
+        conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         cursor = conn.cursor() 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
@@ -76,6 +78,7 @@ def profile(counter):
 @app.route('/testdb')
 def tester():
     try:
+        conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         cursor = conn.cursor() 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
