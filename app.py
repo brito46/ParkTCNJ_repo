@@ -66,9 +66,17 @@ def profile(counter):
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
         val = row[0][0] + count
-        #cursor = conn.cursor() 
-        cursor.execute(f"update lot_four set spaces = {val}")
-        cursor.commit()
+        if val < 0:
+            if row[0][0] != 0:
+                cursor.execute("update lot_four set spaces = 0")
+                cursor.commit()
+        elif val > 90:
+            if row[0][0] != 90:
+                cursor.execute("update lot_four set spaces = 90")
+                cursor.commit()
+        else:
+            cursor.execute(f"update lot_four set spaces = {val}")
+            cursor.commit()
         return "Valid"
     except:
         return "Invalid"
