@@ -55,7 +55,7 @@ def profile(counter):
     try:
         temp = counter.split('q')
         count = int(temp[0]) #the number before the q signifies 
-        tran_id = int(temp[0])
+        tran_id = int(temp[1])
 
         conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         
@@ -67,7 +67,7 @@ def profile(counter):
             return "Valid"
         
         #this means the transaction id doesn't exist, so new information being sent to dB
-        #cursor = conn.cursor() 
+        cursor = conn.cursor() 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
         val = row[0][0] + count
@@ -83,6 +83,7 @@ def profile(counter):
             cursor.execute(f"update lot_four set spaces = {val}")
             cursor.commit()
 
+        cursor = conn.cursor() 
         cursor.execute(f"insert into transacations values('{tran_id}')")
         cursor.commit()
         return "Valid"
