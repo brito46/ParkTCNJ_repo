@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 import pyodbc
 
-
 #setting up our application
 app = Flask(__name__)
 
@@ -58,7 +57,7 @@ def profile(counter):
         tran_id = temp[1]
 
         conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
-        
+        cursor = conn.cursor()
         cursor.execute(f"SELECT id from transactions where id = '{tran_id}'")
         row = cursor.fetchall()
 
@@ -66,8 +65,7 @@ def profile(counter):
         if len(row) > 0:
             return "Valid"
         
-        #this means the transaction id doesn't exist, so new information being sent to dB
-        #cursor = conn.cursor() 
+        #this means the transaction id doesn't exist, so new information being sent to dB 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
         val = row[0][0] + count
