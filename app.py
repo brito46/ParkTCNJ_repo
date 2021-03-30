@@ -59,7 +59,7 @@ def profile(counter):
 
         conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         
-        cursor.execute(f"SELECT id from transactions where id='{tran_id}'")
+        cursor.execute(f"SELECT id from transactions where id = '{tran_id}'")
         row = cursor.fetchall()
 
         #the transaction id was already recorded
