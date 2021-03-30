@@ -55,7 +55,7 @@ def profile(counter):
     try:
         temp = counter.split('q')
         count = int(temp[0]) #the number before the q signifies 
-        tran_id = int(temp[1])
+        tran_id = temp[1]
 
         conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
         
