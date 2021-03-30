@@ -14,13 +14,6 @@ driver= '{ODBC Driver 17 for SQL Server}'
 #conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
 
 
-'''
-Routing maps to URLs to actions
-Routes define the way our users will access data
-'''
-
-# @app is a Python Decorator that is a line above the function they are modifying
-
 #creating an starting route for the start of the application
 @app.route('/') 
 
@@ -60,9 +53,21 @@ def map():
 @app.route('/data/<counter>')
 def profile(counter):
     try:
-        count = int(counter)
+        temp = counter.split('q')
+        count = int(temp[0]) #the number before the q signifies 
+        tran_id = int(temp[0])
+
         conn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
-        cursor = conn.cursor() 
+        
+        cursor.execute(f"SELECT id from transactions where id='{tran_id}'")
+        row = cursor.fetchall()
+
+        #the transaction id was already recorded
+        if len(row) > 0:
+            return "Valid"
+        
+        #this means the transaction id doesn't exist, so new information being sent to dB
+        #cursor = conn.cursor() 
         cursor.execute("SELECT spaces from lot_four")
         row = cursor.fetchall()
         val = row[0][0] + count
@@ -77,6 +82,9 @@ def profile(counter):
         else:
             cursor.execute(f"update lot_four set spaces = {val}")
             cursor.commit()
+
+        cursor.execute(f"insert into transacations values('{tran_id}')")
+        cursor.commit()
         return "Valid"
     except:
         return "Invalid"
