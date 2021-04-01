@@ -81,8 +81,15 @@ def profile(counter):
             cursor.execute(f"update lot_four set spaces = {val}")
             cursor.commit()
 
-        cursor.execute(f"insert into transactions values('{tran_id}')")
-        cursor.commit()
+        #start of new day transaction ids so remove the previous transaction ids from dB
+        if tran_id == "0":
+            cursor.execute(f"delete from transactions")
+            cursor.commit()
+
+        #store current day transaction ids
+        else:
+            cursor.execute(f"insert into transactions values('{tran_id}')")
+            cursor.commit()
         return "Valid"
     except:
         return "Invalid"
