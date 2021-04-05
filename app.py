@@ -73,9 +73,9 @@ def profile(counter):
             if row[0][0] != 0:
                 cursor.execute("update lot_four set spaces = 0")
                 cursor.commit()
-        elif val > 90:
-            if row[0][0] != 90:
-                cursor.execute("update lot_four set spaces = 90")
+        elif val > 234:
+            if row[0][0] != 234:
+                cursor.execute("update lot_four set spaces = 234")
                 cursor.commit()
         else:
             cursor.execute(f"update lot_four set spaces = {val}")
