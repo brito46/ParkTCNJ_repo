@@ -11,9 +11,15 @@
     <div class="container-home">
 
         <div class="map-image">
-            <p class=" map-image-p">
-                <img src="{{url_for('static', filename='Mappy.png')}}" width="800" height="800"  />
-            </p>
+            <img  src="{{url_for('static', filename='Mappy.png')}}" border="0" width="2001" height="2067" orgWidth="2001" orgHeight="2067" usemap="#lotClicks" alt="" />
+            <map name="lotClicks" id="lotClicks">
+                <area  alt="" title="lot4" href="{{ url_for('lot5') }}" shape="rect" coords="1379,1002,1628,1104"     />
+                <area  alt="" title="lot6" href="{{ url_for('lot16') }}" shape="rect" coords="1445,691,1600,848"      />
+                <area  alt="" title="lot7" href="{{ url_for('lot16') }}" shape="rect" coords="1279,670,1434,866"      />
+                <area  alt="" title="lot 12" href="{{ url_for('lot17') }}" shape="rect" coords="833,881,998,984"      />
+                <area  alt="" title="lot 5" href="{{ url_for('lot16') }}" shape="rect" coords="1340,883,1609,986"     />
+                <area  alt="" title="lot 3" href="{{ url_for('lot16') }}" shape="rect" coords="1381,1119,1627,1159"   />
+            </map>
         </div>
 
         <div class="home">
